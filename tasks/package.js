@@ -6,6 +6,19 @@ var deb = require('debian-packaging'),
 
 module.exports = function (grunt) {
 
+    var uploadersToList = function(uploaders) {
+        if (!uploaders) {
+            return '';
+        }
+        if (!uploaders.map) {
+            return uploaders;
+        }
+
+        return uploaders.map(function(uploader) {
+            return (uploader.name ? uploader.name + (uploader.email ? ' <' + uploader.email + '>' : '') : uploader);
+        }).join(',');
+    };
+
     grunt.registerMultiTask('deb_package', function(){
 
         var done = this.async();
@@ -16,6 +29,7 @@ module.exports = function (grunt) {
                     name: process.env.DEBFULLNAME,
                     email: process.env.DEBEMAIL
                 } || pkg.author && pkg.author.name && pkg.author.email && pkg.author,
+                uploaders: pkg.maintainers || "",
                 name: pkg.name,
                 short_description: (pkg.description && pkg.description.split(/\r\n|\r|\n/g)[0]) || '',
                 long_description: (pkg.description && pkg.description.split(/\r\n|\r|\n/g).splice(1).join(' ')) || '',
@@ -80,7 +94,8 @@ module.exports = function (grunt) {
             data: {
                 name: options.name,
                 version: options.version,
-                maintainer: options.maintainer,
+                maintainer: (options.maintainer.name ? options.maintainer.name + (options.maintainer.email ? ' <' + options.maintainer.email + '>' : '') : options.maintainer),
+                uploaders: uploadersToList(options.uploaders),
                 category: options.category,
                 target_architecture: options.target_architecture,
                 dependencies: options.dependencies.join(', '),
