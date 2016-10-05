@@ -8,7 +8,7 @@ describe('deb_package', function () {
             if (code !== 0) {
                 return done(new Error('The grunt task exited with code' + code));
             }
-            fs.exists('./output/my-package_1.0.0-1_all.deb', function (exists) {
+            fs.exists('./output/my-package_1.0.0_1_all.deb', function (exists) {
                 if (!exists) return done(new Error('.deb file was not generated'));
                 done();
             });

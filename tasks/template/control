@@ -7,6 +7,9 @@ Priority: optional
 Standards-Version: 3.9.3
 Package: <%= name %>
 Architecture: <%= target_architecture %>
+<% if (extra_headers.length) {
+%><%= extra_headers %><%
+} %>
 <% if (dependencies.length) {
 %>Depends: <%= dependencies %><%
 } %>

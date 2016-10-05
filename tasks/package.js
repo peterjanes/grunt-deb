@@ -40,7 +40,8 @@ module.exports = function (grunt) {
                 category: "misc",
                 dependencies: [],
                 tmp_dir: '.tmp',
-                output: './output/'
+                output: './output/',
+                extra_headers: {}
             });
 
         if (!isValid(grunt, options)) {
@@ -101,7 +102,10 @@ module.exports = function (grunt) {
                 target_architecture: options.target_architecture,
                 dependencies: options.dependencies.join(', '),
                 short_description: options.short_description,
-                long_description: long_description
+                long_description: long_description,
+                extra_headers: Object.keys(options.extra_headers).map(function(key) {
+                    return key + ": " + options.extra_headers[key];
+                }).join('\n'),
             }
         };
 

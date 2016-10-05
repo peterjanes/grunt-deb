@@ -44,6 +44,7 @@ grunt.initConfig({
             build_number: "1",
             revision: "1",
             dependencies: [],           // List of the package dependencies
+            extra_headers: [],          // List of extra headers to include
             tmp_dir: '.tmp',            // The task working dir
             output: './output/'         // Where your .deb should be created
         },
@@ -107,7 +108,7 @@ Default value: First line of **package.json** `description`
 
 This value defines the short description of the package.
 
-#### options.short_description
+#### options.long_description
 Type: `String`
 Default value: All line of **package.json** `description` except the first one
 
@@ -136,6 +137,12 @@ Type: `String`
 Default value: `misc`
 
 The software category. Used to fill the "section" field of the control file
+
+#### options.extra_headers
+Type: `object`
+Default value: `{}`
+
+Extra headers to add to the package's control file, e.g. `{"Foo": "1.2.3", "Bar": "abc"}`
 
 ---------------------------------------------
 There is more to do:
