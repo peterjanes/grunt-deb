@@ -1,6 +1,6 @@
 {
   "name": "grunt-deb",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A grunt task that performs cross platform debian packaging",
   "main": "Gruntfile.js",
   "scripts": {
@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "fs-extra": "^0.22.1",
-    "debian-packaging": "^0.1.1"
+    "debian-packaging": "^0.1.6"
   }
 }
